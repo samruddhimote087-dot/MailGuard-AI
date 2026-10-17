@@ -1,35 +1,46 @@
-# AI-Based Email Spam Detection — Single Agent
+# MailGuard AI — Single Intelligent Agent for Email Spam Detection
 
-A small interactive web app demonstrating one explainable email-analysis agent. The user enters an email's sender, subject, and body; the agent evaluates text patterns and email characteristics, then returns a spam/legitimate decision with a risk score and explanation.
+MailGuard AI is an interactive Streamlit application that analyzes an email's sender address, subject, and body. One explainable, rule-based intelligent agent checks for suspicious phrases, links, unusual punctuation, excessive capitalization, and selected sender-domain indicators. It then classifies the email as **SPAM** or **LEGITIMATE**, displays a risk score, and explains the signals behind its decision.
+
+## Files in this project
+
+- `app.py` — complete Streamlit user interface and single-agent logic.
+- `requirements.txt` — Python dependency list.
+- `README.md` — setup and project documentation.
 
 ## Run locally
 
 1. Install Python 3.10 or newer.
-2. Open a terminal in this project folder.
-3. Install dependencies:
+2. Open a terminal in this folder.
+3. Install the dependency:
+
    ```bash
-   python -m venv .venv
-   # Windows:
-   .venv\Scripts\activate
-   # macOS/Linux:
-   source .venv/bin/activate
    pip install -r requirements.txt
    ```
+
 4. Start the app:
+
    ```bash
-   python app.py
+   streamlit run app.py
    ```
-5. Open http://127.0.0.1:5000 in your browser.
 
-## How the single agent works
+5. Open the local URL shown in the terminal, usually `http://localhost:8501`.
 
-**Input → Observe → Score signals → Decide → Explain**
+## Deploy on Streamlit Community Cloud
 
-- Observes sender, subject, body, links, urgency phrases, punctuation, and capitalization.
-- Calculates an explainable risk score.
-- Score 3 or higher = SPAM; otherwise = LEGITIMATE.
-- Returns confidence-style indicator and the signals that influenced the decision.
+1. Upload these three files to a GitHub repository.
+2. Create a new app in Streamlit Community Cloud and select that repository.
+3. Set **Main file path** to `app.py`.
+4. Deploy the app.
+
+## How the agent works
+
+1. **Observe:** receives sender, subject, and message text.
+2. **Analyze:** checks configured phrases and selected email characteristics.
+3. **Score:** adds risk points for detected indicators.
+4. **Decide:** score of 3 or higher is classified as SPAM; lower scores are classified as LEGITIMATE.
+5. **Explain:** shows the detected signals and summary in the dashboard.
 
 ## Important limitations
 
-This is an educational prototype using transparent rules, not a trained machine-learning model. The confidence indicator is a heuristic display, not a calibrated probability. It does not connect to an inbox, send email, or open links. For production, use a labeled dataset, train and validate a classifier, and add privacy/security controls.
+This is an educational prototype using hand-written rules, not a trained machine-learning model. It may miss sophisticated spam or flag legitimate messages that contain suspicious wording. The percentage shown as a confidence indicator is a heuristic, not a calibrated probability. The app does not connect to Gmail, open links, inspect attachments, or automatically block email. Do not use the result as the only basis for cybersecurity decisions.
