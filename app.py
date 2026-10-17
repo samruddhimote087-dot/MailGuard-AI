@@ -154,7 +154,6 @@ with left:
         subject = st.text_input("EMAIL SUBJECT", key="subject", placeholder="e.g. Your account needs attention")
         body = st.text_area("MESSAGE CONTENT", key="body", height=210, placeholder="Paste the email text here...")
         submitted = st.form_submit_button("✨ Analyze this email", type="primary", use_container_width=True)
-    st.caption("🔒 For this demo, analysis is limited to the text you paste. The app does not connect to Gmail.")
 
 with right:
     st.markdown('<div class="panel-title">🔎 Your analysis</div><div class="panel-subtitle">Your agent’s decision and the reasons behind it.</div><br>', unsafe_allow_html=True)
@@ -202,9 +201,3 @@ with right:
         </div>
         """, unsafe_allow_html=True)
 
-st.divider()
-foot1, foot2 = st.columns([3, 2])
-with foot1:
-    st.caption("MailGuard AI · Single intelligent agent · Educational prototype")
-with foot2:
-    st.caption("Note: rule-based demo, not a trained ML model. Always verify unexpected requests.")
