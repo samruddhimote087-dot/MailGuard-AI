@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailGuard AI | Email Spam Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">M</div><div><b>MailGuard</b><span>INTELLIGENCE</span></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <div class="nav-item active"><span>◈</span> Email Analyzer <span class="nav-dot"></span></div>
+      <div class="nav-item muted"><span>◷</span> Analysis History <em>Demo</em></div>
+      <div class="side-bottom">
+        <div class="agent-card"><div class="pulse"></div><div><b>Single Agent</b><small>Ready to analyze</small></div></div>
+        <div class="side-foot">SECURE BY DESIGN<br><span>Demo workspace · v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">Workspace <span>/</span> <b>Email Analyzer</b></div>
+        <div class="top-right"><span class="live-dot"></span> Agent online <div class="avatar">MG</div></div>
+      </header>
+      <section class="hero">
+        <div class="eyebrow"><span class="spark">✦</span> INTELLIGENT EMAIL SECURITY</div>
+        <h1>Know what’s in your<br><span>inbox.</span></h1>
+        <p>One intelligent agent. Every suspicious signal explained.<br>Analyze an email before you trust it.</p>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel input-panel">
+          <div class="panel-heading"><div><div class="step">01 / INPUT</div><h2>Inspect an email</h2></div><div class="icon-box">✉</div></div>
+          <form id="emailForm">
+            <label for="sender">SENDER ADDRESS <span>OPTIONAL</span></label>
+            <input id="sender" type="text" placeholder="e.g. support@company.com" autocomplete="off">
+            <label for="subject">EMAIL SUBJECT <span>OPTIONAL</span></label>
+            <input id="subject" type="text" placeholder="What is this email about?">
+            <div class="label-row"><label for="body">MESSAGE CONTENT</label><span id="charCount">0 / 12,000</span></div>
+            <textarea id="body" maxlength="12000" placeholder="Paste the email message here to inspect its content..."></textarea>
+            <div class="privacy-note"><span>♢</span> Your text is analyzed by this local demo app and is not sent to an email provider.</div>
+            <div class="form-actions"><button class="primary-btn" type="submit" id="analyzeBtn"><span>✦</span> Analyze email <span class="arrow">↗</span></button><button type="button" class="text-btn" id="clearBtn">Clear</button></div>
+            <div class="samples"><span>TRY A SAMPLE</span><button type="button" data-sample="spam">Suspicious email</button><button type="button" data-sample="safe">Work email</button></div>
+          </form>
+        </section>
+
+        <section class="panel result-panel" id="resultPanel">
+          <div class="panel-heading"><div><div class="step">02 / AGENT DECISION</div><h2>Analysis result</h2></div><div class="result-icon">⌁</div></div>
+          <div id="emptyState" class="empty-state">
+            <div class="scan-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="scan-core">✦</div><div class="scan-line"></div></div>
+            <h3>Ready when you are</h3><p>Your agent is waiting for an email to inspect.</p>
+            <div class="mini-steps"><div><span>1</span> Observe content</div><div><span>2</span> Evaluate signals</div><div><span>3</span> Explain decision</div></div>
+          </div>
+          <div id="loadingState" class="loading-state hidden"><div class="loader"></div><h3>Inspecting email...</h3><p>Evaluating sender and content signals</p></div>
+          <div id="resultState" class="hidden">
+            <div class="verdict-row"><div id="verdictIcon" class="verdict-icon">!</div><div><div class="verdict-kicker">AGENT CLASSIFICATION</div><h3 id="verdict">SPAM</h3><p id="verdictSummary"></p></div></div>
+            <div class="score-card"><div class="score-top"><span>RISK SCORE</span><strong id="scoreText">0 / 10</strong></div><div class="meter"><div id="meterFill"></div></div><div class="score-bottom"><span>Low risk</span><span>High risk</span></div><div class="confidence"><span>Confidence indicator</span><b id="confidenceText">--%</b></div></div>
+            <div class="signals-heading"><h3>Signals detected</h3><span id="signalCount">0 signals</span></div>
+            <div id="signalsList" class="signals-list"></div>
+            <div class="agent-note"><span>✦</span><div><b>Why this decision?</b><p id="whyText">The agent will explain the strongest signals here.</p></div></div>
+            <button type="button" class="secondary-btn" id="analyzeAnother">↻ Analyze another email</button>
+          </div>
+          <div id="errorBox" class="error-box hidden"></div>
+        </section>
+      </div>
+      <footer><span>MAILGUARD AI</span><span>Explainable decisions · Educational prototype</span><span>● SYSTEM OPERATIONAL</span></footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
